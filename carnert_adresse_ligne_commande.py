@@ -4,13 +4,17 @@ import json
 
 def ajouter_contact():
     nom_contact = input("Entrer votre nom de contact: ").replace(" ","")
+    while len(nom_contact) <= 0:
+        nom_contact = input("Entrer votre nom de contact valable : ").replace(" ","")
     prenom_contact = input("Entrer votre prenom de contact : ").replace(" ","")
+    while len(prenom_contact) <= 0:
+        prenom_contact = input("Entrer votre prenom de contact valable : ").replace(" ","")
     numero_contact = input("Entrer votre numero de contact : ").replace(" ","")
     liste_nct = [i for i in string.digits]
     liste_num = [k for k in numero_contact]
     liste_numero = [j for j in numero_contact if j in liste_nct]
-    while liste_num != liste_numero:
-        numero_contact = input("Entrer votre numero de contact valable : ").replace(" ","")  
+    while (len(numero_contact) <= 0) or (liste_num != liste_numero):
+        numero_contact = input("Entrer votre numero de contact valable : ").replace(" ","") 
         liste_num = [k for k in numero_contact]
         liste_numero = [j for j in numero_contact if j in liste_nct]
     infos_contact = {"NOM":nom_contact,"PRENOM":prenom_contact,"NUMERO_CONTACT":numero_contact}
