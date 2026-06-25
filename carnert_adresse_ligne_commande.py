@@ -107,9 +107,8 @@ while True:
         pass
     else:
         contacts.append(x) 
-
-with open("contacts.json", "w", encoding = "utf-8") as f:
-    json.dump(contacts, f, indent = 4, ensure_ascii = False)
+    with open("contacts.json", "w", encoding = "utf-8") as f:
+        json.dump(contacts, f, indent = 4, ensure_ascii = False)
 
 
 
