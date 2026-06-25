@@ -1,4 +1,3 @@
-import string
 import os
 import json
 
@@ -10,13 +9,8 @@ def ajouter_contact():
     while len(prenom_contact) <= 0:
         prenom_contact = input("Entrer votre prenom de contact valable : ").replace(" ","")
     numero_contact = input("Entrer votre numero de contact : ").replace(" ","")
-    liste_nct = [i for i in string.digits]
-    liste_num = [k for k in numero_contact]
-    liste_numero = [j for j in numero_contact if j in liste_nct]
-    while (len(numero_contact) <= 0) or (liste_num != liste_numero):
+    while (len(numero_contact) <= 0) or (numero_contact.isdigit() == False):
         numero_contact = input("Entrer votre numero de contact valable : ").replace(" ","") 
-        liste_num = [k for k in numero_contact]
-        liste_numero = [j for j in numero_contact if j in liste_nct]
     infos_contact = {"NOM":nom_contact,"PRENOM":prenom_contact,"NUMERO_CONTACT":numero_contact}
     if infos_contact in contacts:
         print("Ces informantions existent déjà")
@@ -73,9 +67,11 @@ def modifier_contact():
         print("Aucune informations trouvées")
 
 contacts = []
+
 if os.path.exists("contacts.json") and os.path.isfile("contacts.json"):
     with open("contacts.json", "r", encoding = "utf-8") as f:
         contacts = json.load(f)
+
 while True:
     print("\n")
     print(" ====== CARNET D'ADRESSE EN LIGNE DE COMMANDE ====== \n")
@@ -111,5 +107,17 @@ while True:
         pass
     else:
         contacts.append(x) 
+
 with open("contacts.json", "w", encoding = "utf-8") as f:
     json.dump(contacts, f, indent = 4, ensure_ascii = False)
+
+
+
+
+
+
+
+
+
+
+
